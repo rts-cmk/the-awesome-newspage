@@ -19,9 +19,10 @@ dvs, de html sider der findes i `public` mappen.
 Sørg for at have en `views` mappe som indeholder en `partials` mappe.
 
 Hver side skal have sin egen `GET` route, som kalder en `.ejs`  template. 
-Der er en del elementer på hjemmesiden som går igen på alle siderne, dem skal du trække ud i individuelle `.ejs` filer som placeres i `partials` mappen.
+Der er en del elementer på hjemmesiden som går igen på alle siderne, dem skal du trække ud i individuelle `.ejs` filer som placeres i `partials` mappen og inkluderes efter behov.
 
 Udfordringen ligger i at splitte designet op i fornuftige og logiske dele, samt at gennemskue hvilke elementer der gentages på flere sider.
 
 Det vil også være ok at oprette templates for elementer der kun benyttes på en side, da siderne indeholder mange linjer kode... det kan være lettere at vedligeholde hvis siderne brydes op i elementer.
 
+Det kan anbefales at bibeholde den overordnede html struktur på den overordnede `.ejs` template, da strukturene ellers kan blive meget uoverskueligt hvis der blot står en samling includes på siden. 
