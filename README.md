@@ -27,6 +27,3 @@ Det vil også være ok at oprette templates for elementer der kun benyttes på e
 
 Det kan anbefales at bibeholde den overordnede html struktur på den overordnede `.ejs` template, da strukturene ellers kan blive meget uoverskueligt hvis der blot står en samling includes på siden. 
 
-
-
-## simple test

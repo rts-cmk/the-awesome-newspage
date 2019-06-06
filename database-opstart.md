@@ -217,7 +217,7 @@ Det er værd at beslutte om man ønsker at benytte alias eller om man sørger fo
 
 ---
 
-## næste opgave beskrivelse kommer når det er tid
+## næste opgave beskrivelse kommer når det er tid...
 
 
 
