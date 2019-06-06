@@ -140,4 +140,84 @@ res.render('products', {
 ```
 Og så burde der meget gerne være en fin udskrift af produkterne.
 
-## næste del kommer når det er passende
+# INNER JOIN
+
+Hvis et produkt skal knyttes til en kategori, så kunne man sagtens tilføje et ekstra felt i produkt tabellen, som indeholder navnet på kategorien... men der risikerer man hurtigt at kategori navnene bliver skrevet/stavet uens, og så bliver det  svært at vedligeholde.
+
+Her giver der bedre mening at oprette en ny tabel til kategorierne, og så skrive sin SQL query, så den knytter tabellerne sammen i udtrækket.
+
+Det kaldes "JOIN" der er flere varianter, og vi vil se på `INNER JOIN` og `LEFT OUTER JOIN`.
+
+Først skal vi have en tabel til kategorier:
+
+* categories 
+* category_id INT AI
+* category_title VARCHAR 64
+
+indsæt et par kategorier.
+
+
+---
+
+Nu skal vi få produkt tabellen til at pege ind på kategori tabellen, og det sker ved at oprette et felt mere i produkt tabellen: `fk_category_id` 
+
+Formålet med dette felt, er at gemme det  tal kategorien har fået som id, så vi kan finde kategori data ud fra id.
+
+Det bliver hurtigt lidt svært at huske hvad de forskellige id'er repræsenterer når man sidder i indsæt eller rediger formularen, derfor vil jeg foreslå en lille opdatereing af tabellerne.
+
+* sørg for at stå op `structure` visningen, så delt egenskaberne er synlige.
+* klik på `relation view` knappen over tabel detaljerne.
+* i dropdownlisten `choose column to return` vælges navnet eller title på entiteten.
+* under produkt tabellens relation view, klikkes også på `internal relations` 
+* ud for `fk_category_id` vælges `categories` tabellen og feltet `category_id`
+
+nu vil det være muligt at vælge  kategorier fra en dropdownliste, frem for at skulle huske hvilke id'er der hører til hvad... det er nemt.
+
+Sørg for at have  et par kategorier og sørg for at alle produkter peger ind  på en kategori igennem fk feltet.
+
+---
+
+Nu skal der trækkes ud fra begge kolonner  i en SQL sætning.
+
+prøv at køre denne sql direkt i PhpMyAdmin SQL vinduet: 
+`SELECT * FROM products INNER JOIN categories ON category_id = fk_category_id`
+
+(kan være du skal erstatte tabel og felt navne med dine egne navne!)
+
+resultatet burde gerne indeholde en record med både produkt og kategori data.
+
+---
+
+Prøv at rette en af produkterne så dens `fk_category_id` peger på noget der IKKE eksisterer i kategori tabellen, og kør den samme SQL sætning fra før.
+
+Læg mærke til at det er tilladt at pege på noget der ikke findes, men ved INNER JOIN ignores hele produktet.
+
+
+Det kan løses ved at rette `INNER JOIN` til `LEFT OUTER JOIN` i stedet, så kommer produkt data ud, men kategori felterne indeholder `NULL`.  
+
+**Det kan anbefales altid at teste sine SQL sætninger med LEFT OUTER JOIN** så der i det mindste kommer noget ud fra databasen, selv om foreign keys skulle være forkerte.
+
+---
+
+Hvis du har 2 kolonner som hedder det samme, f.eks. `title` eller `id`, så kan SQL ikke finde ud af hvilken kolonne du mener, med mindre du omdøber kolonnen i udtrækket... det kaldes et `alias`.
+
+```SQL
+SELECT 
+   products.id AS product_id, 
+   categories.id AS category_id 
+FROM
+   products
+INNER JOIN categories ON categories.id = fk_category_id
+```
+Denne SQL får to kolonner ud som i udskriften hedder noget andet end i databasen
+
+Det er værd at beslutte om man ønsker at benytte alias eller om man sørger for at kalde felterne noget unikt. Begge løsninger er fine, det handler om ens egen præference. (jeg vil anbefale unikke navne, hvis man bliver lidt forvirret over alias)
+
+*sørg for at trække alle produkter ud og udskriv alle informationer, inklusiv kategoriens navn* 
+
+---
+
+## næste opgave beskrivelse kommer når det er tid
+
+
+
