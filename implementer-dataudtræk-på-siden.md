@@ -3,7 +3,7 @@
 Nu hvor der er oprettet en database i stil med diagrammet, så skal siden gøres dynamisk der hvor vi kan gøre den dynamisk.
 
 
-![newspage_diagram.png](./newspage_diagram.png)
+![newspage_diagram.png](./newspage_diagram.PNG)
 
 
 Der er behov for at tilpasse et par routes, da de fremover skal være baseret på en bestemt værdi fra adressebaren.
